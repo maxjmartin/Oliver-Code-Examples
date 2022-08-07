@@ -31,7 +31,7 @@ ADD
 "Stack = " EMIT _STACK_ EMIT ENDL
 
 # The stack can also be cleared of all elements.
-CLEAR _STACK_
+clear _STACK_
 "Stack = " EMIT _STACK_ EMIT ENDL
 
 
