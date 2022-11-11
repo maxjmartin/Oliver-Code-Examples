@@ -1,0 +1,70 @@
+############################################################
+#  Operations can be applied to ordered sequencal terms. 
+#  The two fundamental sequential data types are lists,
+#  and expressions.  Both lists and expression support 
+#  manipulation of the lead elements.
+############################################################
+
+let l = ["a" "b" "c" "d" "e"]
+
+let e = +('1' '2' '3' '4' '5')
+
+"l = " << l << endl
+"e = " << e << endl
+
+############################################################
+#  Notice the term 'e' only emited a '5' once it was
+#  specified.  That was due to it being then evaluated.
+#  The remainder of the values are still on the deque.
+############################################################
+
+"deque = " << deque << endl
+
+let deque = []  # Set the deque with an empty list to clear it.
+endl
+
+############################################################
+#  Let us first work with list manipulation.  Each group
+#  of manipulation places the result of the manipulation
+#  onto the deque.  
+############################################################
+
+"lead element of l      = " << (l lead) << endl
+"drop lead element of l = " << (l drop) << endl
+endl
+
+############################################################
+#  The same operations can also be made using a set of
+#  prefix operators.
+############################################################
+
+"<-- l = " << (<-- l) << endl
+"--> l = " << (--> l) << endl
+endl
+
+############################################################
+#  New elements can be added and removed from the front
+#  of lists.  
+############################################################
+
+"'42' l join = " << ('42' l join) << endl
+"'42' <-> l  = " << ('42' <-> l) << endl
+endl
+
+############################################################
+#  These deque also support lead element manipulation.
+#  This form of manipulation only supports postfix 
+#  operations.  By convention to denote deque manipulation
+#  we use all upper case terms.
+############################################################
+
+e  # Evaluate the expression 'e', to set the deque.
+
+"deque            = " << deque << endl
+(+deque LEAD)
+"+deque LEAD      = " << deque << endl
+(+deque DROP ) 
+"+deque DROP      = " << deque << endl
+('42' +deque JOIN)
+"'42' +deque JOIN = " << deque << endl
+endl

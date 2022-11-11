@@ -1,0 +1,79 @@
+############################################################
+#   True and false statements and relationships are easily
+#   expressed using some simple operators.  All of which
+#   support postfix operators of all infix or prefix
+#   operators.  
+############################################################
+
+let p = true
+let q = false
+
+"p & q = " << (p & q) << endl
+"p | q = " << (p | q) << endl
+"p ^ q = " << (p ^ q) << endl
+endl
+
+let q = p
+
+"p q and = " << (p q l_and) << endl
+"p q or  = " << (p q l_or)  << endl
+"p q xor = " << (p q l_xor) << endl
+endl
+
+let x = '1'
+let y = '2'
+
+"x = y  = " << (x = y)  << endl
+"x -= y = " << (x -= y) << endl
+"x <= y = " << (x <= y) << endl
+"x < y  = " << (x < y)  << endl
+"x >= y = " << (x >= y) << endl
+"x > y  = " << (x > y)  << endl
+endl
+
+"x y eq = " << (x y eq)  << endl
+"x y ne = " << (x y ne) << endl
+"x y le = " << (x y le) << endl
+"x y lt = " << (x y lt)  << endl
+"x y ge = " << (x y ge) << endl
+"x y gt = " << (x y gt)  << endl
+endl
+
+
+############################################################
+#   Postfix logical implication is exampled below.
+############################################################
+
+let x = '42'
+
+(x > '10') +:
+    ("x is greater than 10"     << endl)
+    ("x is not greater than 10" << endl)
+; l_imp
+
+############################################################
+#   Infix logical implication is exampled below.
+############################################################
+
+let x = '-2'
+
+(x > '10') ? :
+    ("x is greater than 10" << endl)
+    ("x is not greater than 10" << endl)
+;
+
+############################################################
+#   Prefix logical implication is exampled below.
+############################################################
+
+let x = '10'
+
+if (x > '10'):
+    "x is greater than 10" << endl
+;
+elif (x < '10'):
+    "x is less than 10" << endl
+;
+else:
+    "x is equal to 10" << endl
+;

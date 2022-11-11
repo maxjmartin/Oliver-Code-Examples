@@ -1,0 +1,46 @@
+############################################################
+# Term and expression association can also be performed
+# using the prefix 'let' operator. Instead of the postfix
+# 'assign' operator.  
+############################################################
+
+let x = '42'
+let y = '8'
+"x + y = " << (x + y) << endl
+endl
+
+# Multiple associations can be done at the same time with let.
+# The requirement is that both sides must be expressions.
+# If both sides are not equal in size, and extra right hand
+# expressions are lost, and any extra left hand associations
+# default to nothing.  
+let (x, y) = ('2', '3', '6')
+"x / y = " << (x / y) << endl
+"x = " << x << endl
+"y = " << y << endl
+
+# The 'let' keyword will also allow expressions to be passed
+# through the '+' operator, and assigned to a symbol.
+let f = +((x + (x / y)) * x)
+"f = " << f << endl
+endl
+
+# Now let us assign two symbolic expressions at the same time.
+let (f, g) = :
+    +((x + (x / y)) * x)
+    +("f = " << f <<)
+;
+
+# Notice there is a 'Deque underflow.' error.
+# This error is admited when an operator pull a term from 
+# the deque, and the deque is empty.  Here the term 'g'
+# calls the term 'f', but 'g' itself does not evaluate
+# to anything.  Instead it is specified to another 
+# expression which is then evaluated. Resulting in nothing
+# being left on the deque to evaluate.  
+"g = (" << g << ")" << endl
+endl
+
+# The corrected form would be.
+"g = (" << g ")" << endl
+endl

@@ -1,0 +1,80 @@
+############################################################
+#   All data in Oliver is represented either as a term,
+#   an expression, or as an abstraction.  All expressions
+#   are defined by a bounding pair of characters that define
+#   the start and the end of the expression.  All terms and
+#   abstractions are considered expressions.
+############################################################
+
+# Numerical expressions are bound by apostrophes.
+'1', '2', '14.125', '9+3i'
+
+# Text string expressions are bound by quotations.
+"a", "b", "Hello", "Welcome to Oliver Lang!"
+
+# Primative 'expression' expressions are all bound by parenthesis.
+(), ('1'), ('1', '2', "cat", "dog", ...)
+
+# They can also be bound by colons & semicolans.  This is 
+# to help reading and organizing written code strings.
+:;, :'1';, :'1', '2', "cat", "dog", ...;
+
+# List expressions are bound by brackets.
+[], ['1'], ['1', '2', "cat", "dog", ...]
+
+# All expressions are evaluated and placed at the end of
+# an exvaluation deque.  
+
+# Keyword terms and operators, all have a predefined expression 
+# associatations. All expressions are all evaluated and placed 
+# on the back of the deque.
+"The deque = "  # Set a text string to the end of the deque.
+<<              # Print a text representation of the top deque element.
+deque           # Set a copy of the deque on top of the deque.
+<<              # Note the emit '<<' operator removes the term from the stack.
+endl            # End the current output line.
+endl            # Add extra line between next output.
+
+# Reification at runtime repalces all terms with the associated
+# expression assigned to them.  Terms without associattion will
+# alway reify to the value of nothing.  
+
+# Programer defined terms only have an association if 
+# and only if an association is defined.  The postfix
+# 'assign' operator defines that association.  
++deque    []               assign
++string_1 "Text string 1." assign
++string_2 "Text string 2." assign
++x        '42'             assign
++y        '18'             assign
+
+# Notice the unary operator '+' was used.  A unary '+' is 
+# the identy function. Unary '+' accepts any single argument
+# and returns it as the result.  It is useful in preventing 
+# symbol evaluation at runtime.  Else the reified term would
+# be placed on the deque.  The unary '+' must have no space 
+# between it and the term it identifies.  
+
+# Once a term is symbolicly associated, any instance of
+# the term will be replaced by its associated expression.
+"x        = " << x        << endl
+"y        = " << y        << endl
+"string_1 = " << string_1 << endl
+"string_2 = " << string_2 << endl
+endl
+
+# We can also define new expressions to evaluate using
+# the identiy function to associate expressions to terms.
+# Here we emit a copy of the deque before ssignment to
+# see the value being assigned to the symbol 'sum'.
++sum +(x + y) (deque << endl) assign
+"sum = " << sum << endl
+endl
+
+# All expressions are also evaluated explicitatly at 
+# runtime, unless passed to the deque through the unary '+'
+# operator.  Here the expression '((x + (x / y)) * x)' is 
+# evaluated, the result assigned to the symbol 'y'.
++f ((x + (x / y)) * x) (deque << endl) assign
+"f = " << f << endl
+endl

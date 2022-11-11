@@ -1,0 +1,87 @@
+############################################################
+#   Logical negation operations.  Notice that we used a 
+#   new logical operator the unary '-', logical negation 
+#   operator, in the last tutorial text.
+############################################################
+
+def adder(x):
+
+    def n():
+        def n(y):x + y;
+        -n
+    ;
+    n
+;
+
+let f = (adder '42')
+let x = '8'
+
+"x     = " << x  << endl
+"f     = " << -f << endl
+"(f x) = " << (f x) << endl
+endl
+
+
+############################################################
+#   Most often we think of logical negation in true and
+#   false terms.  Below are some example.
+############################################################
+
+let p = true
+let q = false
+
+"p & -q = " << (p & -q) << endl
+"p | -q = " << (p | -q) << endl
+"p ^ -q = " << (p ^ -q) << endl
+endl
+
+
+############################################################
+#   So logical negation work oposite of the indetity 
+#   operator.  It get the value of what it is applied to
+#   then inverts its value, if applicable, and places
+#   the result on the deque.  
+############################################################
+
+let x = '42'
+" x = " <<  (x) << endl
+"-x = " << (-x) << endl
+endl 
+
+
+############################################################
+#   Lets look again at the adder function again.  
+############################################################
+
+def adder(x):
+
+    def n():
+        def n(y):x + y;
+        -n
+        # The negation of 'n' is the specidication of
+        # 'n' in to the lambda function it abstracts.
+        # Lambda function do not support any further
+        # negation operation.  So it is simply left
+        # on the deque.  
+    ;
+    n
+    # By invoke the evaluation of this variable 'n'
+    # the internaly enclosed function of 'n' is then
+    # left as the result of the evaluation on the deque.
+;
+
+let f = (adder '42')
+let x = '8'
+
+"x     = " << x  << endl
+"f     = " << -f << endl  # Here wer are asking for the
+                          # specification of 'f'.  So we
+                          # can see the function.  
+"(f x) = " << (f x) << endl
+endl
+
+############################################################
+#   Notice one last thing concerning the negation of 'f'.
+#   The body of the function has been evaluated to all
+#   postscipt operations.  
+############################################################

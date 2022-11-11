@@ -1,0 +1,105 @@
+############################################################
+#   Lambda expressions, are anonymous functions, defined
+#   by the combination of two expressions, the arguments
+#   and the body.  An example:
+#           lambda(x): x << ;
+#   The lambda keyword identifies the expression as a 
+#   lambda expression.  '(x)' is the argument expression.
+#   ': x << ;' is the body expression.  Lambda functions
+#   perform abstraction by the substitution of the value
+#   of their arguments within the body of the function.  
+############################################################
+
+let f = lambda(x): x << ;
+f '42'
+endl
+# This lambda is almost identical to the identity 
+# function.  All it does is substitute '42' for 'x'
+# then emitting the value of '42'. 
+
+
+############################################################
+#   For convience, lambda expression can be defined with
+#   the 'def' keyword. 
+############################################################
+
+def f(x): "x = " << x << endl;
+f '2.25'
+
+
+############################################################
+#   Lambda expressions, used in conjunction with logical
+#   operations can be used to manipulate data. 
+############################################################
+
+let x = '0'
+
+def f(y)(
+
+    if (y < '10'):
+        let y = (y + '1')
+        "y = " << y << endl
+        f y
+    ;
+    elif (y > '10'):
+        let y = (y - '1')
+        "y = " << y << endl
+        f y
+    ;
+)
+"(f x):" << endl
+(f x) endl
+
+############################################################
+#   Lambda expressions, have their own enclosure.  That
+#   is any variable bound as an argument is difrent than
+#   any other variable with the same name.  Bellow we
+#   redifine 'f' so the name of it argument is the same
+#   as the global variable of 'x'.  
+############################################################
+
+def f(x)(
+
+    if (x < '10'):
+        let x = (x + '1')
+        "x = " << x << endl
+        f x
+    ;
+    elif (x > '10'):
+        let x = (x - '1')
+        "x = " << x << endl
+        f x
+    ;
+)
+"(f x):" << endl
+(f x) endl
+
+"global x still is = " << x << endl
+endl
+
+
+############################################################
+#   Lambda expression closures are indipendant of each
+#   other.  Below is an example of the reuse of the 'n'
+#   identifier as a variable and a funtion.   
+############################################################
+def adder(x):
+
+    def n():
+        def n(y):x + y;
+        -n
+    ;
+    n
+;
+
+let f = (adder '42')
+let x = '8'
+
+"x     = " << x  << endl
+"f     = " << -f << endl
+"(f x) = " << (f x) << endl
+
+############################################################
+#   Notice that we used a new unary '-' operator.  We
+#   discuss that in the module.  
+############################################################
