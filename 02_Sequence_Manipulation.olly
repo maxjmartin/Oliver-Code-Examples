@@ -1,9 +1,11 @@
-############################################################
-#  Operations can be applied to ordered sequencal terms. 
-#  The two fundamental sequential data types are lists,
-#  and expressions.  Both lists and expression support 
-#  manipulation of the lead elements.
-############################################################
+##########################################################
+    Operations can be applied to ordered sequencal 
+    terms. The two fundamental sequential data types are 
+    lists, and expressions.  Both lists and expression 
+    support manipulation of the lead elements.
+##########################################################
+
+#! NO_EXCEPT = false
 
 let l = ["a" "b" "c" "d" "e"]
 
@@ -12,59 +14,78 @@ let e = +('1' '2' '3' '4' '5')
 "l = " << l << endl
 "e = " << e << endl
 
-############################################################
-#  Notice the term 'e' only emited a '5' once it was
-#  specified.  That was due to it being then evaluated.
-#  The remainder of the values are still on the deque.
-############################################################
+##############################################################
+    Notice the term 'e' only emited a '5' once it was
+    specified.  That was due to it being then evaluated.
+    The remainder of the values are still on the deque.
+##############################################################
 
 "deque = " << deque << endl
 
 let deque = []  # Set the deque with an empty list to clear it.
+"deque = " << deque << endl
 endl
 
-############################################################
-#  Let us first work with list manipulation.  Each group
-#  of manipulation places the result of the manipulation
-#  onto the deque.  
-############################################################
+##############################################################
+    Let us first work with list manipulation.  Each group
+    of manipulation places the result of the manipulation
+    onto the deque.  
+##############################################################
 
 "lead element of l      = " << (l lead) << endl
 "drop lead element of l = " << (l drop) << endl
 endl
 
-############################################################
-#  The same operations can also be made using a set of
-#  prefix operators.
-############################################################
+##############################################################
+    The same operations can also be made using a set of
+    prefix operators.
+##############################################################
 
 "<-- l = " << (<-- l) << endl
 "--> l = " << (--> l) << endl
 endl
 
-############################################################
-#  New elements can be added and removed from the front
-#  of lists.  
-############################################################
+##############################################################
+    New elements can be added and removed from the front
+    of lists.  
+##############################################################
 
 "'42' l join = " << ('42' l join) << endl
 "'42' <-> l  = " << ('42' <-> l) << endl
 endl
 
-############################################################
-#  These deque also support lead element manipulation.
-#  This form of manipulation only supports postfix 
-#  operations.  By convention to denote deque manipulation
-#  we use all upper case terms.
-############################################################
+##############################################################
+    These deque also support lead element manipulation.
+    This form of manipulation only supports postfix 
+    operations.  By convention to denote deque manipulation
+    we use all upper case terms.
+##############################################################
 
-e  # Evaluate the expression 'e', to set the deque.
+e  # Evaluate the expression 'e', to set the deque with its values.
 
-"deque            = " << deque << endl
-(+deque LEAD)
-"+deque LEAD      = " << deque << endl
-(+deque DROP ) 
-"+deque DROP      = " << deque << endl
-('42' +deque JOIN)
-"'42' +deque JOIN = " << deque << endl
+"deque             = " << deque << endl
+(+deque lead_)
+"+deque lead_      = " << deque << endl
+(+deque drop_) 
+"+deque drop_      = " << deque << endl
+('42' +deque join_)
+"'42' +deque join_ = " << deque << endl
+endl
+
+##############################################################
+    Note that the use of an underscore on the back of the
+    operators.  An underscode on the back of a deque 
+    operator means that the front of the deque is being
+    manipulated.  An underscore on the front of the 
+    manipulator means that the back of the deque is being
+    manipulated.
+##############################################################
+
+"deque             = " << deque << endl
+(+deque _last)
+"+deque _last      = " << deque << endl
+(+deque _drop) 
+"+deque _drop      = " << deque << endl
+('42' +deque _join)
+"'42' +deque _join = " << deque << endl
 endl

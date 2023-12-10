@@ -1,40 +1,48 @@
-############################################################
-#   Lambda expressions, are anonymous functions, defined
-#   by the combination of two expressions, the arguments
-#   and the body.  An example:
-#           lambda(x): x << ;
-#   The lambda keyword identifies the expression as a 
-#   lambda expression.  '(x)' is the argument expression.
-#   ': x << ;' is the body expression.  Lambda functions
-#   perform abstraction by the substitution of the value
-#   of their arguments within the body of the function.  
-############################################################
+##############################################################
+    Functions in the Oliver language are nothing more than
+    lambda expressions, anonymous functions, defined by 
+    the combination of two expressions, the arguments and 
+    the body.  An example:
+            func(x): x << ;
+    The 'func' keyword identifies the expression as a 
+    lambda expression.  '(x)' is the argument expression.
+    ': x << ;' is the body expression.  Lambda functions
+    perform abstraction by the substitution of the value
+    of their arguments within the body of the function.  
 
-let f = lambda(x): x << ;
+    Going forward we will refer to all lambda expressions
+    simply as function expressions.  
+##############################################################
+
+#! NO_EXCEPT = false
+
+let f = func(x): "x = " << x << ;
 f '42'
 endl
-# This lambda is almost identical to the identity 
+# This function is almost identical to the identity 
 # function.  All it does is substitute '42' for 'x'
 # then emitting the value of '42'. 
 
 
-############################################################
-#   For convience, lambda expression can be defined with
-#   the 'def' keyword. 
-############################################################
+##############################################################
+    For convience, function expression can be defined with
+    the 'def' keyword. 
+##############################################################
 
 def f(x): "x = " << x << endl;
 f '2.25'
+endl
 
 
-############################################################
-#   Lambda expressions, used in conjunction with logical
-#   operations can be used to manipulate data. 
-############################################################
+##############################################################
+    Function expressions, used in conjunction with logical
+    operations can be used to manipulate data. The function
+    'f' below simply counts up to or down to '10'.  
+##############################################################
 
 let x = '0'
 
-def f(y)(
+def f(y):
 
     if (y < '10'):
         let y = (y + '1')
@@ -46,19 +54,20 @@ def f(y)(
         "y = " << y << endl
         f y
     ;
-)
+;
 "(f x):" << endl
 (f x) endl
+endl
 
-############################################################
-#   Lambda expressions, have their own enclosure.  That
-#   is any variable bound as an argument is difrent than
-#   any other variable with the same name.  Bellow we
-#   redifine 'f' so the name of it argument is the same
-#   as the global variable of 'x'.  
-############################################################
+##########################################################
+    Function expressions, have their own enclosure.  That
+    is any variable bound as an argument is difrent than
+    any other variable with the same name.  Bellow we
+    redifine 'f' so the name of it argument is the same
+    as the global variable of 'x'.  
+##########################################################
 
-def f(x)(
+def f(x):
 
     if (x < '10'):
         let x = (x + '1')
@@ -70,7 +79,7 @@ def f(x)(
         "x = " << x << endl
         f x
     ;
-)
+;
 "(f x):" << endl
 (f x) endl
 
@@ -78,11 +87,11 @@ def f(x)(
 endl
 
 
-############################################################
-#   Lambda expression closures are indipendant of each
-#   other.  Below is an example of the reuse of the 'n'
-#   identifier as a variable and a funtion.   
-############################################################
+##########################################################
+    Function expression closures are indipendant of each
+    other.  Below is an example of the reuse of the 'n'
+    identifier as a variable and a funtion.   
+##########################################################
 def adder(x):
 
     def n():
@@ -99,7 +108,9 @@ let x = '8'
 "f     = " << -f << endl
 "(f x) = " << (f x) << endl
 
-############################################################
-#   Notice that we used a new unary '-' operator.  We
-#   discuss that in the module.  
-############################################################
+##########################################################
+    Notice above we used a unary negation '-' operator.
+    Unary negation sbinds the function enclosure to the 
+    previous closure.  We will go into more detail in 
+    the next section.  
+##########################################################

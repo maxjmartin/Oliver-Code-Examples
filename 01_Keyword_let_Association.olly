@@ -1,13 +1,14 @@
-############################################################
-# Term and expression association can also be performed
-# using the prefix 'let' operator. Instead of the postfix
-# 'assign' operator.  
-############################################################
+##############################################################
+    Term and expression association can also be performed
+    using the prefix 'let' operator. Instead of the postfix   
+    'assign' operator.  
+##############################################################
+
+#! NO_EXCEPT = false
 
 let x = '42'
 let y = '8'
 "x + y = " << (x + y) << endl
-endl
 
 # Multiple associations can be done at the same time with let.
 # The requirement is that both sides must be expressions.
@@ -39,8 +40,11 @@ let (f, g) = :
 # expression which is then evaluated. Resulting in nothing
 # being left on the deque to evaluate.  
 "g = (" << g << ")" << endl
-endl
 
 # The corrected form would be.
 "g = (" << g ")" << endl
+
+# To make this more readable it has been
+# wrapped inside another expression.
+"g = (" << (g ")") << endl
 endl

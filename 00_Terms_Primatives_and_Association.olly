@@ -1,29 +1,32 @@
-############################################################
-#   All data in Oliver is represented either as a term,
-#   an expression, or as an abstraction.  All expressions
-#   are defined by a bounding pair of characters that define
-#   the start and the end of the expression.  All terms and
-#   abstractions are considered expressions.
-############################################################
+###############################################################
+    All data in Oliver is represented either as a term, an 
+    expression, or as an abstraction.  All expressions are 
+    defined by a bounding pair of characters that define the 
+    start and the end of the expression.  All terms and 
+    abstractions are considered expressions.
+###############################################################
+
+# Shibang lines configure the runtime of the program.
+# Here we are allowing for exceptions to be thrown.  
+#! NO_EXCEPT = false
+
+# mishtype
 
 # Numerical expressions are bound by apostrophes.
-'1', '2', '14.125', '9+3i'
+'1', '2', '14.125', '9 + 3i'
 
 # Text string expressions are bound by quotations.
 "a", "b", "Hello", "Welcome to Oliver Lang!"
 
 # Primative 'expression' expressions are all bound by parenthesis.
-(), ('1'), ('1', '2', "cat", "dog", ...)
+(), ('1'), ('1', '2', "cat", "dog")
 
 # They can also be bound by colons & semicolans.  This is 
 # to help reading and organizing written code strings.
-:;, :'1';, :'1', '2', "cat", "dog", ...;
+:;, :'1';, :'1', '2', "cat", "dog";
 
 # List expressions are bound by brackets.
-[], ['1'], ['1', '2', "cat", "dog", ...]
-
-# All expressions are evaluated and placed at the end of
-# an exvaluation deque.  
+[], ['1'], ['1', '2', "cat", "dog"] 
 
 # Keyword terms and operators, all have a predefined expression 
 # associatations. All expressions are all evaluated and placed 
@@ -35,9 +38,10 @@ deque           # Set a copy of the deque on top of the deque.
 endl            # End the current output line.
 endl            # Add extra line between next output.
 
-# Reification at runtime repalces all terms with the associated
+# Specification at runtime repalces all terms with the associated
 # expression assigned to them.  Terms without associattion will
-# alway reify to the value of nothing.  
+# alway specify to the value of nothing, and not placed on to the
+# deque. 
 
 # Programer defined terms only have an association if 
 # and only if an association is defined.  The postfix
@@ -51,7 +55,7 @@ endl            # Add extra line between next output.
 # Notice the unary operator '+' was used.  A unary '+' is 
 # the identy function. Unary '+' accepts any single argument
 # and returns it as the result.  It is useful in preventing 
-# symbol evaluation at runtime.  Else the reified term would
+# symbol evaluation at runtime.  Else the specified term would
 # be placed on the deque.  The unary '+' must have no space 
 # between it and the term it identifies.  
 
@@ -65,7 +69,7 @@ endl
 
 # We can also define new expressions to evaluate using
 # the identiy function to associate expressions to terms.
-# Here we emit a copy of the deque before ssignment to
+# Here we emit a copy of the deque before assignment to
 # see the value being assigned to the symbol 'sum'.
 +sum +(x + y) (deque << endl) assign
 "sum = " << sum << endl
@@ -74,7 +78,7 @@ endl
 # All expressions are also evaluated explicitatly at 
 # runtime, unless passed to the deque through the unary '+'
 # operator.  Here the expression '((x + (x / y)) * x)' is 
-# evaluated, the result assigned to the symbol 'y'.
+# evaluated, the result assigned to the symbol 'f'.
 +f ((x + (x / y)) * x) (deque << endl) assign
 "f = " << f << endl
 endl
